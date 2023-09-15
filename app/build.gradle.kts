@@ -1,4 +1,3 @@
-val ktorVersion: String by project
 val kotlinVersion: String by project
 val logbackVersion: String by project
 val koinVersion: String by project
@@ -27,6 +26,9 @@ dependencies {
     implementation("io.ktor:ktor-server-auth-jvm")
     implementation("io.ktor:ktor-server-sessions-jvm")
     implementation("io.ktor:ktor-server-resources")
+        implementation("io.ktor:ktor-serialization")
+    implementation("io.ktor:ktor-serialization-kotlinx-json")
+
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("io.ktor:ktor-server-status-pages")
     implementation("io.ktor:ktor-server-content-negotiation")
@@ -34,9 +36,10 @@ dependencies {
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
-    implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
+    implementation("io.ktor:ktor-server-call-logging")
+    implementation("io.ktor:ktor-server-call-logging-jvm")
 
-    testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
+    testImplementation("io.ktor:ktor-server-tests")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
 
     implementation("org.postgresql:postgresql:$postgresVersion")
@@ -44,7 +47,10 @@ dependencies {
 
     implementation("io.insert-koin:koin-ktor:$koinVersion")
     implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
+
+    implementation("com.github.javafaker:javafaker:1.0.2")
 }
+
 
 testing {
     suites {
@@ -62,7 +68,7 @@ java {
 }
 
 application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
+    mainClass.set("com.jmfg.training.ktor.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")

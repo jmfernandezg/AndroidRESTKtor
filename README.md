@@ -59,3 +59,55 @@ https://start.ktor.io
 
 ### 8: Modules
 
+- Modules are used to group routes and features
+
+### 9. Plugins
+
+- Plugins are used to add features to the application
+
+### 10. Postman
+
+- Postman is a tool for testing REST APIs
+ 
+
+### 11. Requests / responses
+- Parameters: `call.parameters["username"]`
+- Headers: `call.headers["Connection"]`
+- Send headers: `call.response.header("Content-Type", "application/json")`
+- Content Negotiation Plugin: Serialization and deserialization
+- Redirect: `call.responseRedirect`
+
+### 12. Static content
+
+- Static content are certain files that don't change
+- Static content is served from the `resources` folder
+
+### 13. Templating
+
+- Templating is used to generate dynamic content
+- Freemaker, Velocity, Mustache, Thymeleaf
+
+### 14. Auto Reloading
+
+
+--- 
+
+## Section 3 : Building a Ktor Server for the Backend
+
+### 15. Setting up the project
+
+### 16. Install Plugins
+
+### 17. Create Model Classes
+
+### 18. Create Repository
+
+### 19. Create Root Endpoint
+
+### 20. Create Custom Endpoints Part 1
+
+### 21. Create Custom Endpoints Part 2   
+
+### 22. Create Search endpoint
+
+### 23. Create Status Pages
