@@ -3,10 +3,13 @@ val kotlinVersion: String by project
 val logbackVersion: String by project
 val koinVersion: String by project
 val guavaVersion: String by project
+val postgresVersion: String by project
+val h2Version: String by project
 
 plugins {
     application
     kotlin("jvm") version "1.9.10"
+    id("io.ktor.plugin") version "2.3.4"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
@@ -19,18 +22,25 @@ repositories {
 
 dependencies {
     implementation("com.google.guava:guava:$guavaVersion")
-    implementation("io.ktor:ktor-server-core:$ktorVersion")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+
+    implementation("io.ktor:ktor-server-core-jvm")
+    implementation("io.ktor:ktor-server-auth-jvm")
+    implementation("io.ktor:ktor-server-sessions-jvm")
+    implementation("io.ktor:ktor-server-resources")
+    implementation("io.ktor:ktor-server-netty-jvm")
+    implementation("io.ktor:ktor-server-status-pages")
+    implementation("io.ktor:ktor-server-content-negotiation")
+    implementation("io.ktor:ktor-server-default-headers")
+
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
     implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
-    implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
-    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
-    implementation("io.ktor:ktor-server-default-headers:$ktorVersion")
 
     testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+
+    implementation("org.postgresql:postgresql:$postgresVersion")
+    implementation("com.h2database:h2:$h2Version")
 
     implementation("io.insert-koin:koin-ktor:$koinVersion")
     implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
@@ -38,15 +48,12 @@ dependencies {
 
 testing {
     suites {
-        // Configure the built-in test suite
         val test by getting(JvmTestSuite::class) {
-            // Use Kotlin Test test framework
             useKotlinTest("1.9.10")
         }
     }
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
@@ -54,6 +61,8 @@ java {
 }
 
 application {
-    // Define the main class for the application.
-    mainClass.set("com.jmfg.training.ktor.AppKt")
+    mainClass.set("io.ktor.server.netty.EngineMain")
+
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }

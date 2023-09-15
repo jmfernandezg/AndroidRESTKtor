@@ -3,12 +3,24 @@
  */
 package com.jmfg.training.ktor
 
+import com.jmfg.training.ktor.plugins.configureRouting
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.server.testing.*
 import kotlin.test.Test
-import kotlin.test.assertNotNull
+import kotlin.test.assertEquals
 
 class AppTest {
-    @Test fun appHasAGreeting() {
-        val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+
+    @Test
+    fun testRoot() = testApplication {
+        application {
+            configureRouting()
+        }
+        client.get("/").apply {
+            assertEquals(HttpStatusCode.OK, status)
+            assertEquals("Hello World!", bodyAsText())
+        }
     }
 }
