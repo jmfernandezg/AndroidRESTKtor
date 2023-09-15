@@ -15,12 +15,14 @@ fun main() {
 }
 
 fun ApplicationEngineEnvironmentBuilder.envConfig() {
+    developmentMode = true
     module {
         module()
     }
     connector {
         port = 8080
     }
+    watchPaths = listOf("classes", "resources")
 }
 fun Application.module() {
     configureRouting()

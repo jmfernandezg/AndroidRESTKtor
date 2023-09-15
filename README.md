@@ -81,14 +81,18 @@ https://start.ktor.io
 
 - Static content are certain files that don't change
 - Static content is served from the `resources` folder
+- Add dependency ktor-html-builder
 
 ### 13. Templating
 
 - Templating is used to generate dynamic content
 - Freemaker, Velocity, Mustache, Thymeleaf
+- Add dependency io.ktor:ktor-server-html-builder
 
 ### 14. Auto Reloading
 
+- Set developmentMode = true in application.conf
+- Set watchPaths = listOf("classes", "resources")
 
 --- 
 
