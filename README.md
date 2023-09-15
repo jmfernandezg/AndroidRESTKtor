@@ -44,3 +44,18 @@ Training for Android App with REST API and Ktor Server
 #### 5.1: Create Ktor Project
 - Main class `io.ktor.server.netty.EngineMain.main(args)`
 - Configuration `application.conf` file
+
+### 6. Ktor Project Generator
+
+https://start.ktor.io
+
+### 7 Settings and Configuration
+
+- Supported engines: Jetty and Netty
+- EngineMain: configuration in application.conf
+- embeddedServer: configuration in code
+  - Gradle script main class should be Application
+- HOCON: Human-Optimized Config Object Notation
+
+### 8: Modules
+
