@@ -10,6 +10,7 @@ plugins {
     kotlin("jvm") version "1.9.10"
     id("io.ktor.plugin") version "2.3.4"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    id("org.jlleitschuh.gradle.ktlint") version "11.5.1"
 }
 
 group = "com.jmfg.training"
@@ -35,11 +36,11 @@ dependencies {
     implementation("io.ktor:ktor-server-default-headers")
     implementation("io.ktor:ktor-server-html-builder")
 
-
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 
     implementation("io.ktor:ktor-server-call-logging")
     implementation("io.ktor:ktor-server-call-logging-jvm")
+    implementation("io.ktor:ktor-server-host-common-jvm:2.3.4")
 
     testImplementation("io.ktor:ktor-server-tests")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
@@ -50,9 +51,8 @@ dependencies {
     implementation("io.insert-koin:koin-ktor:$koinVersion")
     implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
 
-    implementation("com.github.javafaker:javafaker:1.0.2")
+    implementation("net.datafaker:datafaker:2.0.1")
 }
-
 
 testing {
     suites {
@@ -61,7 +61,6 @@ testing {
         }
     }
 }
-
 
 java {
     toolchain {
