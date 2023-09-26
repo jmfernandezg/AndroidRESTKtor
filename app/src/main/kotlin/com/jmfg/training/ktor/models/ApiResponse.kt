@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class ApiResponse(
     val success: Boolean,
     val message: String? = null,
-    val prevPage: Int? = null,
-    val nextPage: Int? = null,
-    val characters: List<TVCharacter> = emptyList()
+    val characters: List<TVCharacter> = emptyList(),
+    val prevPage: Int? = if (characters.isNotEmpty()) 1 else null,
+    val nextPage: Int? = if (characters.isNotEmpty()) 1 else null
 )

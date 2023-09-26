@@ -40,9 +40,9 @@ dependencies {
 
     implementation("io.ktor:ktor-server-call-logging")
     implementation("io.ktor:ktor-server-call-logging-jvm")
-    implementation("io.ktor:ktor-server-host-common-jvm:2.3.4")
+    implementation("io.ktor:ktor-server-host-common-jvm")
 
-    testImplementation("io.ktor:ktor-server-tests")
+    testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
 
     implementation("org.postgresql:postgresql:$postgresVersion")

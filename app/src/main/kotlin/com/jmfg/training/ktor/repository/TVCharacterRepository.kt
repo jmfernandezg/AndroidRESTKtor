@@ -45,10 +45,20 @@ class TVCharacterRepositoryImpl : TVCharacterRepository {
     }
 
     override suspend fun search(name: String): ApiResponse {
-        return ApiResponse(
-            success = true,
-            message = "Success",
-            characters = characters.values.flatten().filter { it.name.contains(name, ignoreCase = true) }
+        return characters.values.flatten().filter {
+            it.name.contains(name, ignoreCase = true)
+        }.takeIf {
+            it.isNotEmpty()
+        }?.let {
+            ApiResponse(
+                success = true,
+                message = "Success",
+                characters = it
+            )
+        } ?: ApiResponse(
+            success = false,
+            message = "Not Found",
+            characters = emptyList()
         )
     }
 }

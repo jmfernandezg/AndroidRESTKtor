@@ -13,7 +13,7 @@ fun Route.root() {
     get("/") {
         call.respond(
             status = HttpStatusCode.OK,
-            message = faker.gameOfThrones().quote()
+            message = faker.ghostbusters().quote()
         )
     }
 }
